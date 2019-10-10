@@ -39,7 +39,8 @@ class LoginActivity  : AppCompatActivity(){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful)return@addOnCompleteListener
-
+                val intent = Intent(this, ShopActivity::class.java)
+                startActivity(intent)
                 //else if successful
                 Log.d("Main", "Succesfully logged in: ${it.result}")
             }
