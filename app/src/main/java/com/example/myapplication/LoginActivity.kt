@@ -24,7 +24,7 @@ class LoginActivity  : AppCompatActivity(){
 
 
     }
-
+//Login
     private fun performLogin(){
         val email = textEmailLogin.text.toString()
         val password = textPasswordLogin.text.toString()
