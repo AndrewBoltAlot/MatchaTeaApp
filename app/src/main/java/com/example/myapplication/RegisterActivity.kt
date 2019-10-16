@@ -119,6 +119,13 @@ class RegisterActivity : AppCompatActivity() {
         ref.setValue(user)
             .addOnSuccessListener {
                 Log.d("RegisterActivity", "Save user to Firebase Database")
+
+                val intent = Intent(this, ShopActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
+            .addOnFailureListener {
+                Log.d("RegisterActivity", "Failed to set value to database: $(it.message)")
             }
     }
 }

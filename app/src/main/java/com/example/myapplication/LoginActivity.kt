@@ -9,12 +9,18 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity  : AppCompatActivity(){
+
+    lateinit var mAuth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+       mAuth = FirebaseAuth.getInstance()
+
         btnLogin.setOnClickListener {
             performLogin()
+
         }
 
         textRegistration.setOnClickListener {
@@ -36,13 +42,15 @@ class LoginActivity  : AppCompatActivity(){
 
         Log.d("Login", "Attempt login with email/password: $email/***" )
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {
-                if (!it.isSuccessful)return@addOnCompleteListener
-                val intent = Intent(this, ShopActivity::class.java)
-                startActivity(intent)
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener {task ->
+                if (task.isSuccessful)return@addOnCompleteListener
                 //else if successful
-                Log.d("Main", "Succesfully logged in: ${it.result}")
+                Log.d("Main", "Succesfully logged in: ${task.result}")
+
+                val intent = Intent(this, ShopActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
             }
             .addOnFailureListener {
                 Log.d("Main", "Failed to login: ${it.message}" )
