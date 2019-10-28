@@ -5,42 +5,33 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.google.firebase.auth.FirebaseAuth
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import kotlinx.android.synthetic.main.layout_shop.*
 
 class ShopActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_shop)
+        setContentView(R.layout.content_shop)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
-       isUserLoggedin()
+        isUserLoggedin()
 
-        val adapter = GroupAdapter<GroupieViewHolder>()
-
-        adapter.add(ShopItem())
-        adapter.add(ShopItem())
-        adapter.add(ShopItem())
-
-        matchaTea_recycler_view.adapter = adapter
-
-    /*    val products = arrayListOf<Product>()
+            val products = arrayListOf<Product>()
 
         for (i in 0..100){
-            products.add(Product("MatchaTea","https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRPzKQIGlrhQQ1b3qPsk48gogQY9P-txi5C8lrH0yaIH46qgjdHA1V9lYCBg1CyxTJWbTpHjpiIxnSBsbJC2MQxi1CVpXihBN3mrc_93rjS1Xi_n-Uj64Lsbg&usqp=CAc"
-            , 20.00))
+            products.add(Product("Matcha Tea #$i", "http://via.placeholder.com/350/dddddd/000000",
+             20.00))
         }
 
         matchaTea_recycler_view.apply {
-            layoutManager = GridLayoutManager(this@ShopActivity, 2)
+           layoutManager = GridLayoutManager(this@ShopActivity, 2)
             adapter = ProductsAdapter(products = products)
 
-        }*/
+        }
     }
 
     private fun isUserLoggedin(){
@@ -71,13 +62,5 @@ class ShopActivity : AppCompatActivity(){
     }
 }
 
-class ShopItem: Item<GroupieViewHolder>(){
-    override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-        //will be called in our list for each shop object later on..
-    }
 
-    override fun getLayout(): Int {
-        return R.layout.product_row
-    }
-}
 
