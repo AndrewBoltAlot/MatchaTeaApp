@@ -81,6 +81,8 @@ class RegisterActivity : AppCompatActivity() {
                 //else if successful
                 Log.d("Main", "Succesfully created user with uid: ${it.result}")
 
+                Toast.makeText(this,"Account has been registered", Toast.LENGTH_SHORT).show()
+
                 uploadImagetoFireBaseStorage()
             }
             .addOnFailureListener {

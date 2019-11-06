@@ -2,23 +2,40 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log.d
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.drawer_shop.*
 import kotlinx.android.synthetic.main.layout_shop.*
 
 class ShopActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.content_shop)
+        setContentView(R.layout.drawer_shop)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
         isUserLoggedin()
+
+        nav_view.setNavigationItemSelectedListener {
+            it.isChecked = true
+            drawerlayout.closeDrawers()
+            when(it.itemId){
+                R.id.menu_shopping_cart -> d("Drawer Menu", "Shopping Cart Was Pressed!")
+                R.id.menu_matcha_teas -> d("Drawer Menu", "Matcha Tea Was Pressed!")
+                R.id.menu_tea_sets -> d("Drawer Menu", "Tea Sets Was Pressed!")
+            }
+            true
+        }
+
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
+        }
 
             val products = arrayListOf<Product>()
 
@@ -32,6 +49,9 @@ class ShopActivity : AppCompatActivity(){
             adapter = ProductsAdapter(products = products)
 
         }
+
+
+
     }
 
     private fun isUserLoggedin(){
@@ -52,7 +72,7 @@ class ShopActivity : AppCompatActivity(){
                 startActivity(intent)
         }
         }
-
+        drawerlayout.openDrawer(GravityCompat.START)
         return super.onOptionsItemSelected(item)
     }
 
