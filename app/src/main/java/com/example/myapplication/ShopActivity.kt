@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_shop.*
+import kotlinx.android.synthetic.main.fragment_shop_main.*
 import kotlinx.android.synthetic.main.layout_shop.*
 
 class ShopActivity : AppCompatActivity(){
@@ -21,14 +22,28 @@ class ShopActivity : AppCompatActivity(){
 
         isUserLoggedin()
 
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frameLayout, FragmentShopMain())
+            .commit()
+
         nav_view.setNavigationItemSelectedListener {
-            it.isChecked = true
-            drawerlayout.closeDrawers()
             when(it.itemId){
+                R.id.menu_Home ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, FragmentShopMain())
+                        .commit()
+                }
                 R.id.menu_shopping_cart -> d("Drawer Menu", "Shopping Cart Was Pressed!")
-                R.id.menu_matcha_teas -> d("Drawer Menu", "Matcha Tea Was Pressed!")
+                R.id.menu_matcha_teas ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frameLayout, FragmentMatchaTea())
+                        .commit()
+
+                }
                 R.id.menu_tea_sets -> d("Drawer Menu", "Tea Sets Was Pressed!")
             }
+            it.isChecked = true
+            drawerlayout.closeDrawers()
             true
         }
 
@@ -36,21 +51,6 @@ class ShopActivity : AppCompatActivity(){
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp)
         }
-
-            val products = arrayListOf<Product>()
-
-        for (i in 0..100){
-            products.add(Product("Matcha Tea #$i", "http://via.placeholder.com/350/dddddd/000000",
-             20.00))
-        }
-
-        matchaTea_recycler_view.apply {
-           layoutManager = GridLayoutManager(this@ShopActivity, 2)
-            adapter = ProductsAdapter(products = products)
-
-        }
-
-
 
     }
 
@@ -78,6 +78,7 @@ class ShopActivity : AppCompatActivity(){
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
+        menuInflater.inflate(R.menu.menu_sign_out, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

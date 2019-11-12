@@ -30,6 +30,10 @@ ext {
 }
 
 dependencies {
+    implementation "org.jetbrains.anko:anko:0.10.8"
+
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
