@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_shop_main.*
 import kotlinx.android.synthetic.main.fragment_shop_main.view.*
@@ -31,6 +33,13 @@ class FragmentShopMain :Fragment(){
                     root.progressBar.visibility = View.GONE
                 }
             }
+        }
+
+        val categories = (listOf("Matcha Tea", " Tea Sets", "Japanese Matcha Tea", "American Matcha Tea"))
+
+        root.matchaTea_categories.apply{
+            layoutManager = LinearLayoutManager(activity, RecyclerView.HORIZONTAL, false)
+            adapter = CategoriesAdapter(categories)
         }
 
 
