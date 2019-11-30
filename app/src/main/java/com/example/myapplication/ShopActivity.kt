@@ -7,37 +7,15 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Room
-import com.example.myapplication.database.AppDatabase
-import com.example.myapplication.database.ProductDatabase
-
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.drawer_shop.*
-import kotlinx.android.synthetic.main.fragment_shop_main.*
-import kotlinx.android.synthetic.main.layout_shop.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
+
 
 class ShopActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.drawer_shop)
         setSupportActionBar(findViewById(R.id.my_toolbar))
-
-        doAsync {
-            val db = Room.databaseBuilder(
-                applicationContext,
-                AppDatabase::class.java, "Products"
-            ).build()
-
-            db.productDao().InsertAll(ProductDatabase(null,"Matcha Tea", "https://my-json-server.typicode.com/AndrewBoltAlot/RestApiMatchaTeaApp/products", 25.99))
-            val products = db.productDao().getAll()
-
-            uiThread {
-
-            }
-        }
 
         isUserLoggedin()
 
@@ -90,13 +68,17 @@ class ShopActivity : AppCompatActivity(){
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
         }
+            R.id.shopping_cart ->{
+                val intent = Intent(this, CartActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            }
         }
         drawerlayout.openDrawer(GravityCompat.START)
         return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
         menuInflater.inflate(R.menu.menu_sign_out, menu)
         return super.onCreateOptionsMenu(menu)
     }

@@ -23,12 +23,11 @@
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
-        <activity android:name=".PaymentsActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ShopActivity"/>
-        </activity>
         <activity android:name=".ProductDetails"
             android:parentActivityName=".ShopActivity"/>
+        <activity android:name=".CartActivity"
+            android:parentActivityName=".ShopActivity">
+        </activity>
     </application>
 
 </manifest>
