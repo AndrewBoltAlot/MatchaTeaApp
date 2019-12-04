@@ -43,5 +43,17 @@
         app:layout_constraintTop_toBottomOf="@id/matchaTitle"
         tools:text="$20.00"/>
 
+    <ImageButton
+        android:id="@+id/addToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="4dp"
+        android:src="@drawable/ic_add_shopping_cart_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/matchaPrice" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

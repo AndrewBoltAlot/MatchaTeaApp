@@ -20,7 +20,7 @@
         <ImageView
             android:layout_weight=".5"
             android:scaleType="fitXY"
-            android:id="@+id/matchaPhoto2"
+            android:id="@+id/cartImage"
             android:layout_width="170dp"
             android:layout_height="135dp"/>
 
@@ -39,7 +39,7 @@
             <TextView
                 android:textSize="19sp"
                 android:textColor="@android:color/black"
-                android:id="@+id/matchaTitle2"
+                android:id="@+id/cartTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -48,7 +48,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:id="@+id/matchaPrice2"
+                android:id="@+id/cartPrice"
                 android:textColor="@android:color/holo_red_light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -65,7 +65,7 @@
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:background="@drawable/rounded_button_light"
-            android:id="@+id/product_quantity"
+            android:id="@+id/cart_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"/>

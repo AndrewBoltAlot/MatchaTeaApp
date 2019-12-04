@@ -14,8 +14,10 @@ class CartActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cart)
         setSupportActionBar(my_toolbar)
 
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply{
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_keyboard_backspace_white_24dp)
+        }
 
     }
 }

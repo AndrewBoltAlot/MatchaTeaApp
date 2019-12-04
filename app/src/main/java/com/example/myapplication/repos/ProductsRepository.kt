@@ -13,5 +13,6 @@ class ProductsRepository {
          val products = Gson().fromJson(json, Array<Product>::class.java).toList()
          it.onSuccess(products)
      }
+
     }
 }
